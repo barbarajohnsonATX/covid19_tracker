@@ -9,7 +9,7 @@ import image from './images/image.png';
 class App extends React.Component {
   state = {
     data: {},
-    country: '',
+    country: 'US',
   }
 
   async componentDidMount() {
