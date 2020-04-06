@@ -1,4 +1,5 @@
-
+// useState is a Hook to allow ou to add React state to functional components
+// useEffect lets you perform side effects (ex: data fetching) in function components
 import React, { useState, useEffect } from 'react';
 import { Line, Bar } from 'react-chartjs-2';
 
@@ -7,8 +8,13 @@ import { fetchDailyData } from '../../api';
 import styles from './Chart.module.css';
 
 const Chart = ({ data: { confirmed, recovered, deaths }, country }) => {
+    
+  // declare a new state variable dailyData (same as this.state in a class)
+  // pass initial state in useState() of empty object
+  // useState returns current state (dailyData) and a function that updates it (same as this.state.dailyData, this.setState in class)
   const [dailyData, setDailyData] = useState({});
 
+  // similar to componentDidMount and componentDidUpdate
   useEffect(() => {
     const fetchMyAPI = async () => {
       const initialDailyData = await fetchDailyData();
