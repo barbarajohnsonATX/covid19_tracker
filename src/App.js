@@ -5,6 +5,7 @@ import { fetchData } from './api/';
 import styles from './App.module.css';
 
 import coronaImage from './images/image.png';
+import StatesChart from './components/StatesChart/StatesChart';
 
 class App extends React.Component {
   state = {
@@ -27,6 +28,10 @@ class App extends React.Component {
 
   render() {
     const { data, country } = this.state;
+    let displayState = country === 'US' ? true : false
+    console.log('country', country )
+    console.log("displayState", displayState)
+       
 
     return (
       <div className={styles.container}>
@@ -34,6 +39,7 @@ class App extends React.Component {
         <Cards data={data} />
         <CountryPicker handleCountryChange={this.handleCountryChange} />
         <Chart data={data} country={country} /> 
+        { displayState ? <StatesChart /> : '' }
       </div>
     );
   }

@@ -47,3 +47,14 @@ export const fetchDailyData = async () => {
           
       }
   }
+
+  export const fetchStates = async () => {
+      try {
+        const { data } = await axios.get(`https://covidtracking.com/api/states`);
+        return data  
+          
+      } catch (error) {
+          console.log(error)
+          
+      }
+  }
