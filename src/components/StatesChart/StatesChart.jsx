@@ -26,11 +26,93 @@ const StatesChart = () => {
 
     }
 
+
+    let stateDataSets = () => {
+        let test = []
+    
+        debugger
+        return test
+    }
+ 
+    
+
+
     let displayStates = statesData.length ? true : false
+
+    const stackedBarChart = (
+        displayStates ? (
+    <Bar
+       
+    data={
+        
+        {
+            labels: [statesData[0].state],
+            datasets: [
+            {
+                label: 'Confirmed',
+                backgroundColor: ['rgba(0, 0, 255, 0.5)'],
+                data: [statesData[0].positive,]
+            },
+
+            {
+                label: 'Recovered',
+                backgroundColor: ['rgba(0, 255, 0, 0.5)'],
+                data: [statesData[0].recovered,],
+            },
+
+            {
+                label: 'Deaths',
+                backgroundColor: ['rgba(255, 0, 0, 0.5)'],
+                data: [statesData[0].death,],
+            },
+            ],
+        }, 
+
+        {
+            labels: [statesData[1].state],
+            datasets: [
+            {
+                label: 'Confirmed',
+                backgroundColor: ['rgba(0, 0, 255, 0.5)'],
+                data: [statesData[1].positive,]
+            },
+
+            {
+                label: 'Recovered',
+                backgroundColor: ['rgba(0, 255, 0, 0.5)'],
+                data: [statesData[1].recovered,],
+            },
+
+            {
+                label: 'Deaths',
+                backgroundColor: ['rgba(255, 0, 0, 0.5)'],
+                data: [statesData[1].death,],
+            },
+            ],
+        }
+        
+    }
+
+      options={{
+        scales: {
+            xAxes: [{
+              stacked: true
+            }],
+            yAxes: [{
+                stacked: true
+            }]
+          }
+      }}
+      
+    />
+        ) : ''
+
+    )
 
 
     return (
         <div>
+            {stackedBarChart}
             <ul>
             { statesData.length ? statesData.map( (obj, i) => <li key={i}>{obj.state} Postive: {obj.positive} Recovered: {obj.recovered} Deaths: {obj.death} </li> ) : ''}
             </ul>
