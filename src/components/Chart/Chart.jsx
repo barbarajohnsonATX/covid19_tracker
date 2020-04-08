@@ -8,7 +8,7 @@ import { fetchDailyData } from '../../api';
 import styles from './Chart.module.css';
 
 const Chart = ({ data: { confirmed, recovered, deaths }, country }) => {
-    
+
   // declare a new state variable dailyData (same as this.state in a class)
   // pass initial state in useState() of empty object
   // useState returns current state (dailyData) and a function that updates it (same as this.state.dailyData, this.setState in class)
@@ -33,7 +33,7 @@ const barChart = (
         datasets: [
           {
             label: 'People',
-            backgroundColor: ['rgba(0, 0, 255, 0.5)', 'rgba(0, 255, 0, 0.5)', 'rgba(255, 0, 0, 0.5)'],
+            backgroundColor: ['rgba(0, 0, 255, 0.5)', 'rgba(0, 255, 0, 0.8)', 'rgba(255, 0, 0, 0.8)'],
             data: [confirmed.value, recovered.value, deaths.value],
           },
         ],
@@ -60,7 +60,7 @@ const lineChart = (
           data: dailyData.map((data) => data.deaths),
           label: 'Deaths',
           borderColor: 'red',
-          backgroundColor: 'rgba(255, 0, 0, 0.5)',
+          backgroundColor: 'rgba(255, 0, 0, 0.8)',
           fill: true,
         },
         ],
