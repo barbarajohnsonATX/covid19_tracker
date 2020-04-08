@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { fetchStates } from '../../api';
-import { Bar } from 'react-chartjs-2';
+import { HorizontalBar } from 'react-chartjs-2';
 
+import styles from './StatesChart.module.css';
 
 const StatesChart = () => {
 
@@ -27,12 +28,7 @@ const StatesChart = () => {
     }
 
 
-    let stateDataSets = () => {
-        let test = []
-    
-        debugger
-        return test
-    }
+     
  
     
 
@@ -41,55 +37,53 @@ const StatesChart = () => {
 
     const stackedBarChart = (
         displayStates ? (
-    <Bar
+    <HorizontalBar
        
     data={
-        
-        {
-            labels: [statesData[0].state],
-            datasets: [
-            {
-                label: 'Confirmed',
-                backgroundColor: ['rgba(0, 0, 255, 0.5)'],
-                data: [statesData[0].positive,]
-            },
-
-            {
-                label: 'Recovered',
-                backgroundColor: ['rgba(0, 255, 0, 0.5)'],
-                data: [statesData[0].recovered,],
-            },
-
-            {
-                label: 'Deaths',
-                backgroundColor: ['rgba(255, 0, 0, 0.5)'],
-                data: [statesData[0].death,],
-            },
-            ],
-        }, 
 
         {
-            labels: [statesData[1].state],
+            labels: statesData.map(data => data.state),
             datasets: [
-            {
-                label: 'Confirmed',
-                backgroundColor: ['rgba(0, 0, 255, 0.5)'],
-                data: [statesData[1].positive,]
-            },
 
-            {
-                label: 'Recovered',
-                backgroundColor: ['rgba(0, 255, 0, 0.5)'],
-                data: [statesData[1].recovered,],
-            },
+                
 
-            {
-                label: 'Deaths',
-                backgroundColor: ['rgba(255, 0, 0, 0.5)'],
-                data: [statesData[1].death,],
-            },
-            ],
+                    {
+                        label: 'Confirmed',
+                        backgroundColor: 'rgba(0, 0, 255, 0.5)',
+                        data: statesData.map(state => state.positive),
+                    },
+    
+                    {
+                        label: 'Recovered',
+                        backgroundColor: 'rgba(0, 255, 0, 0.5)',
+                        data: statesData.map(state => state.recovered ? state.recovered : 0),
+                    },
+
+                    {
+                        label: 'Currently Hospitalized',
+                        backgroundColor: 'rgba(120, 10, 0, 0.5)',
+                        data: statesData.map(state => state.hospitalizedCurrently ? state.hospitalizedCurrently : 0),
+                    },
+    
+                    {
+                        label: 'Deaths',
+                        backgroundColor: 'rgba(255, 0, 0, 0.5)',
+                        data: statesData.map(state => state.death),
+                    },
+
+                ],
+
+                
+
+                
+            
+            
+
         }
+
+         
+
+
         
     }
 
@@ -111,11 +105,10 @@ const StatesChart = () => {
 
 
     return (
-        <div>
+        <div className={styles.container}>
+
             {stackedBarChart}
-            <ul>
-            { statesData.length ? statesData.map( (obj, i) => <li key={i}>{obj.state} Postive: {obj.positive} Recovered: {obj.recovered} Deaths: {obj.death} </li> ) : ''}
-            </ul>
+             
         </div>
     )
 }
