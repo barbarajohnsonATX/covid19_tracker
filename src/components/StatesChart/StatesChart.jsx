@@ -39,33 +39,48 @@ const StatesChart = () => {
         displayStates ? (
     <HorizontalBar
        
+
     data={
 
         {
             labels: statesData.map(data => data.state),
+           
+  
+
             datasets: [
 
-                
+ 
 
                     {
+                        barThickness: 11,
                         label: 'Confirmed',
                         backgroundColor: 'rgba(0, 0, 255, 0.5)',
                         data: statesData.map(state => state.positive),
                     },
     
                     {
+                        barThickness: 11,
                         label: 'Recovered',
                         backgroundColor: 'rgba(0, 255, 0, 0.5)',
                         data: statesData.map(state => state.recovered ? state.recovered : 0),
                     },
 
                     {
+                        barThickness: 11,
                         label: 'Currently Hospitalized',
-                        backgroundColor: 'rgba(120, 10, 0, 0.5)',
+                        backgroundColor: 'rgba(255, 255, 0, 0.5)',
                         data: statesData.map(state => state.hospitalizedCurrently ? state.hospitalizedCurrently : 0),
+                    },
+
+                    {
+                        barThickness: 11,
+                        label: 'On Ventilator',
+                        backgroundColor: 'rgba(255, 165, 0, 0.8)',
+                        data: statesData.map(state => state.onVentilatorCurrently ? state.onVentilatorCurrently : 0),
                     },
     
                     {
+                        barThickness: 11,
                         label: 'Deaths',
                         backgroundColor: 'rgba(255, 0, 0, 0.5)',
                         data: statesData.map(state => state.death),
@@ -88,12 +103,23 @@ const StatesChart = () => {
     }
 
       options={{
+        maintainAspectRatio: false,
+        title: { display: true, text: `States Information` },
+
+
         scales: {
             xAxes: [{
               stacked: true
             }],
             yAxes: [{
-                stacked: true
+                stacked: true,
+                ticks: {
+                    fontSize: 9,
+                    lineHeight: 1.6,
+                    beginAtZero: true
+
+                },
+
             }]
           }
       }}
