@@ -37,21 +37,21 @@ const StatesChart = () => {
             datasets: [
 
                     {
-                        barThickness: 11,
+                        barThickness: 'flex',
                         label: 'Confirmed',
                         backgroundColor: 'rgba(0, 0, 255, 0.5)',
                         data: statesData.map(state => state.positive),
                     },
     
                     {
-                        barThickness: 11,
+                        barThickness: 'flex',
                         label: 'Recovered',
                         backgroundColor: 'rgba(0, 255, 0, 0.8)',
                         data: statesData.map(state => state.recovered ? state.recovered : 0),
                     },
 
                     {
-                        barThickness: 11,
+                        barThickness: 'flex',
                         label: 'Currently Hospitalized',
                         backgroundColor: 'rgba(255, 255, 0, 0.8)',
                         data: statesData.map(state => state.hospitalizedCurrently ? state.hospitalizedCurrently : 0),
@@ -59,7 +59,7 @@ const StatesChart = () => {
 
 
                     {
-                        barThickness: 11,
+                        barThickness: 'flex',
                         label: 'On Ventilator',
                         backgroundColor: 'rgba(255, 165, 0, 0.8)',
                         data: statesData.map(state => state.onVentilatorCurrently ? state.onVentilatorCurrently : 0),
@@ -67,14 +67,14 @@ const StatesChart = () => {
     
 
                     {
-                        barThickness: 11,
+                        barThickness: 'flex',
                         label: 'Currently in ICU',
                         backgroundColor: 'rgba(255, 99, 71, 0.8)',
                         data: statesData.map(state => state.inIcuCurrently ? state.inIcuCurrently : 0),
                     },
 
                     {
-                        barThickness: 11,
+                        barThickness: 'flex',
                         label: 'Deaths',
                         backgroundColor: 'rgba(255, 0, 0, 0.8)',
                         data: statesData.map(state => state.death),
@@ -90,6 +90,7 @@ const StatesChart = () => {
 
       options={{
         maintainAspectRatio: false,
+        responsive: true,
         title: { display: true, text: `United States COVID-19 Cases` },
 
 
@@ -109,7 +110,7 @@ const StatesChart = () => {
                 },
                 ticks: {
                     fontSize: 9,
-                    lineHeight: 1.6,
+                    //lineHeight: 1.6,
                     beginAtZero: true
 
                 },
