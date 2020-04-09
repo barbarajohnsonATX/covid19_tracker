@@ -21,18 +21,7 @@ const StatesChart = () => {
 
     
     console.log("statesData", statesData )
-    if(statesData.length) {
-        let UsStates = statesData.map( obj => obj.state)
-        console.log(UsStates)
-
-    }
-
-
-     
- 
     
-
-
     let displayStates = statesData.length ? true : false
 
     const stackedBarChart = (
@@ -45,11 +34,7 @@ const StatesChart = () => {
         {
             labels: statesData.map(data => data.state),
            
-  
-
             datasets: [
-
- 
 
                     {
                         barThickness: 11,
@@ -71,7 +56,6 @@ const StatesChart = () => {
                         backgroundColor: 'rgba(255, 255, 0, 0.8)',
                         data: statesData.map(state => state.hospitalizedCurrently ? state.hospitalizedCurrently : 0),
                     },
-
 
 
                     {
@@ -96,17 +80,9 @@ const StatesChart = () => {
                         data: statesData.map(state => state.death),
                     },
 
-                ],
-
-                
-
-                
-            
-            
+                ],          
 
         }
-
-         
 
 
         
@@ -119,10 +95,18 @@ const StatesChart = () => {
 
         scales: {
             xAxes: [{
-              stacked: true
+              stacked: true,
+              scaleLabel: {
+                  display: true, 
+                  labelString: 'People'
+              }
             }],
             yAxes: [{
                 stacked: true,
+                scaleLabel: {
+                    display: true,
+                    labelString: 'States'
+                },
                 ticks: {
                     fontSize: 9,
                     lineHeight: 1.6,
